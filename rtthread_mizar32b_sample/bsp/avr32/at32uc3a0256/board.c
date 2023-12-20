@@ -18,6 +18,7 @@
 #include "intc.h"
 #include "drv_uart.h"
 #include "drv_gpio.h"
+//#include "usb-cdc.h"
 
 /**
  * System tick interrupt handler.
@@ -29,6 +30,8 @@ static void rt_hw_timer_handler(void)
 
     rt_tick_increase();
 }
+
+extern void usb_init(void);
 
 /**
  * Initialize system clock and all peripherals.
@@ -47,6 +50,9 @@ static void peripherals_init(void)
     };
     pm_configure_clocks(&pm_freq_param);
     INTC_init_interrupts();
+	// Raman:
+	pm_configure_usb_clock();
+	usb_init();
 }
 
 /**

@@ -70,8 +70,8 @@
         <board id="board.user_board.uc3a" value="Add" config="" content-id="Atmel.ASF" />
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.avrone</avrtool>
-    <avrtoolserialnumber>0000000001AD</avrtoolserialnumber>
+    <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
+    <avrtoolserialnumber>J42700053627</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x0</avrdeviceexpectedsignature>
     <avrtoolinterface>JTAG</avrtoolinterface>
     <com_atmel_avrdbg_tool_atmelice>
@@ -85,11 +85,11 @@
       <ToolNumber>J42700053627</ToolNumber>
       <ToolName>Atmel-ICE</ToolName>
     </com_atmel_avrdbg_tool_atmelice>
-    <avrtoolinterfaceclock>12000000</avrtoolinterfaceclock>
+    <avrtoolinterfaceclock>7500000</avrtoolinterfaceclock>
     <com_atmel_avrdbg_tool_avrone>
       <ToolOptions>
         <InterfaceProperties>
-          <JtagDbgClock>12000000</JtagDbgClock>
+          <JtagDbgClock>0</JtagDbgClock>
         </InterfaceProperties>
         <InterfaceName>JTAG</InterfaceName>
       </ToolOptions>
@@ -209,6 +209,7 @@
             <Value>../components/drivers/include</Value>
             <Value>../components/dfs/dfs_v1/include</Value>
             <Value>../components/libc/compilers/common/include</Value>
+            <Value>../bsp/avr32/software_framework/drivers/usb-cdc</Value>
           </ListValues>
         </avr32gcc.compiler.directories.IncludePaths>
         <avr32gcc.compiler.optimization.level>Optimize for size (-Os)</avr32gcc.compiler.optimization.level>
@@ -279,6 +280,7 @@
     <Folder Include="bsp\avr32\software_framework\drivers\intc\" />
     <Folder Include="bsp\avr32\software_framework\drivers\pm\" />
     <Folder Include="bsp\avr32\software_framework\drivers\usart\" />
+    <Folder Include="bsp\avr32\software_framework\drivers\usb-cdc\" />
     <Folder Include="bsp\avr32\software_framework\utils\" />
     <Folder Include="bsp\avr32\software_framework\utils\header_files\" />
     <Folder Include="bsp\avr32\software_framework\utils\interrupt\" />
@@ -297,6 +299,13 @@
     <Folder Include="components\drivers\misc\" />
     <Folder Include="components\drivers\core" />
     <Folder Include="components\drivers\serial\" />
+    <Folder Include="components\drivers\usb\" />
+    <Folder Include="components\drivers\usb\usbdevice\" />
+    <Folder Include="components\drivers\usb\usbdevice\class\" />
+    <Folder Include="components\drivers\usb\usbdevice\core\" />
+    <Folder Include="components\drivers\usb\usbhost\" />
+    <Folder Include="components\drivers\usb\usbhost\class\" />
+    <Folder Include="components\drivers\usb\usbhost\core\" />
     <Folder Include="components\finsh\" />
     <Folder Include="components\libc\" />
     <Folder Include="components\libc\compilers\" />
@@ -359,6 +368,15 @@
       <SubType>compile</SubType>
     </None>
     <None Include="components\drivers\serial\SConscript">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\SConscript">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbdevice\SConscript">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\SConscript">
       <SubType>compile</SubType>
     </None>
     <None Include="components\finsh\Kconfig">
@@ -487,6 +505,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="bsp\avr32\software_framework\drivers\usart\usart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="bsp\avr32\software_framework\drivers\usb-cdc\usb-cdc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="bsp\avr32\software_framework\drivers\usb-cdc\usb-cdc.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="bsp\avr32\software_framework\utils\compiler.h">
@@ -780,6 +804,96 @@
     <Compile Include="components\drivers\serial\serial.c">
       <SubType>compile</SubType>
     </Compile>
+    <None Include="components\drivers\usb\usbdevice\class\audio_mic.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbdevice\class\audio_speaker.c">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="components\drivers\usb\usbdevice\class\cdc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="components\drivers\usb\usbdevice\class\cdc_vcom.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="components\drivers\usb\usbdevice\class\ecm.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbdevice\class\hid.c">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="components\drivers\usb\usbdevice\class\hid.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="components\drivers\usb\usbdevice\class\mstorage.c">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="components\drivers\usb\usbdevice\class\mstorage.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="components\drivers\usb\usbdevice\class\ndis.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="components\drivers\usb\usbdevice\class\rndis.c">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="components\drivers\usb\usbdevice\class\rndis.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="components\drivers\usb\usbdevice\class\uaudioreg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="components\drivers\usb\usbdevice\class\winusb.c">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="components\drivers\usb\usbdevice\class\winusb.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="components\drivers\usb\usbdevice\core\usbdevice.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="components\drivers\usb\usbdevice\core\usbdevice_core.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="components\drivers\usb\usbhost\class\adk.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\class\adk.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\class\hid.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\class\hid.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\class\mass.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\class\mass.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\class\udisk.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\class\ukbd.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\class\umouse.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\core\driver.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\core\hub.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\core\usbhost.c">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="components\drivers\usb\usbhost\core\usbhost_core.c">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="components\finsh\cmd.c">
       <SubType>compile</SubType>
     </Compile>
